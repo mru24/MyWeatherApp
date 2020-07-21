@@ -18,11 +18,15 @@
             </div>
             <div class="form-container">
               <form id="myForm">
+                <span id="home"><span class="content">&#8962;</span></span>
                 <input type="text" id="cityInput" value="My Location">
                 <span id="clear-input"><span class="content">&times;</span></span>
                 <ul id="citySelect"></ul>
               </form>
-              <button type="button" name="button" id="get-result">Get</button>
+              <div class="button-container">
+                <button type="button" name="button" id="get-result">Get weather</button>
+                <button id="search"><span>&#8981;</span></button>
+              </div>
             </div>
             <div id="current"></div>
           </header>
@@ -48,7 +52,7 @@
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="jquery_mobile/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
   "name": "weatherAppV3",
   "short_name": "weatherAppV3",
   "version": "com.wwproject.weatherapp",
-  "description": "My weather android application.",
+  "description": "My weather android/cordova hybrid application.",
   "author": "WWProject Studio",
   "icons": [],
   "start_url": "index.html"

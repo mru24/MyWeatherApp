@@ -10,6 +10,12 @@ $('#get-result').on('click', function() {
 $('#clear-input').on('click', function() {
   $(cityInput).val('');
 });
+$('#home').on('click', function() {
+  $(cityInput).val('My Location');
+});
+$('#search').on('click', function() {
+  $('#myForm').slideDown();
+})
 
 $(document).ready(function() {
   currentTime();
@@ -53,6 +59,7 @@ function loadApi(api_data) {
         var current_output = "";
         current_output +=
         '<div class="weather-current">' +
+          '<h4>' + city + '</h4>' +
           '<div class="left">' +
             '<img src="https://openweathermap.org/img/w/' + current.weather[0].icon + '.png" />' +
             '<p class="descr">' + current.weather[0].description + '</p>' +
@@ -90,20 +97,16 @@ function loadApi(api_data) {
           } else if(dt_hour > sunrise_hour && dt_hour < sunset_hour -1) {
             console.log("3",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
-            '<div class="weather-hourly" style="background:#fffeec">';
+            '<div class="weather-hourly" style="background:#fefefe;color:black;">';
           } else if(dt_hour >= sunset_hour - 1 && dt_hour < sunset_hour) {
             console.log("4",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
-            '<div class="weather-hourly" style="background:#e4ae21">';
+            '<div class="weather-hourly" style="background:#e4ae21;color:black;">';
           } else if(dt_hour >= sunset_hour && dt_hour < sunset_hour + 1) {
             console.log("5",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
-            '<div class="weather-hourly" style="background:#b02121;color:white;">';
-          } else if(dt_hour >= sunset_hour + 1 && dt_hour < sunset_hour + 2) {
-            console.log("6",dt_hour,"/",sunrise_hour,"/",sunset_hour);
-            hourly_output +=
             '<div class="weather-hourly" style="background:#1350da;color:white;">';
-          } else if(dt_hour >= sunset_hour + 2 && dt_hour < sunset_hour + 3) {
+          } else if(dt_hour >= sunset_hour + 1 && dt_hour < sunset_hour + 2) {
             console.log("6",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
             '<div class="weather-hourly" style="background:#153c94;color:white;">';
@@ -243,6 +246,8 @@ function loadApi(api_data) {
           '</div>';
         });
         daily_output += '</div>';
+
+        $(cityInput).val('');
         $('.trigger').slideDown();
         $('#hourly').html(hourly_output);
         $('#current').html(current_output);
