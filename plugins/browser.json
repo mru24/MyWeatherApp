@@ -1,0 +1,18 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.wwproject.weatherapp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.wwproject.weatherapp"
+    }
+  },
+  "dependent_plugins": {}
+}

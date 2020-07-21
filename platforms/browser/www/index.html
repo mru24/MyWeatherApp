@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  <body>
+    <div class="app">
+      <div class="container">
+        <div class="weather_app">
+          <header>
+            <div class="title">
+              <h4>Weather</h4><span id="time"></span>
+            </div>
+            <div class="form-container">
+              <form id="myForm">
+                <input type="text" id="cityInput" value="My Location">
+                <span id="clear-input"><span class="content">&times;</span></span>
+                <ul id="citySelect"></ul>
+              </form>
+              <button type="button" name="button" id="get-result">Get</button>
+            </div>
+            <div id="current"></div>
+          </header>
+
+
+
+          <div id="hourly-trigger" class="trigger">
+            <h3>48 hours <span>&raquo;</span></h3>
+            <div id="hourly"></div>
+          </div>
+          <div id="daily-trigger" class="trigger">
+            <h3>7 days <span>&raquo;</span></h3>
+            <div id="daily"></div>
+          </div>
+
+
+          <div class="copyright">
+            <p>WWProject Studio &copy;2018</p>
+            <p>Powered by: <a href="https://openweathermap.org/" target="_blank" rel="noreferrer noopener">Openweathermap.org</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="jquery_mobile/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

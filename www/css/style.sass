@@ -1,0 +1,238 @@
+@mixin landscape
+  @media only screen and (orientation: landscape)
+    @content
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+html,
+body
+  width: 100%
+  height: 100%
+
+ul
+  list-style: none
+body
+  font-family: sans-serif
+  .container
+    width: 100%
+    height: 100%
+    margin: auto
+    background: white
+    display: flex
+    .weather_app
+      min-height: 100vh
+      margin: auto
+      position: relative
+      padding-bottom: 150px
+      header
+        .title
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          align-items: center
+          padding: 10px 15px
+          h4
+            text-align: center
+            letter-spacing: 3px
+          #time
+            text-align: right
+            .date
+              font-size: 12px
+        .form-container
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          padding: 15px 10px
+          form
+            width: 100%
+            position: relative
+            input,select
+              width: 100%
+              height: 40px
+              line-height: 40px
+              font-size: 20px
+              padding-left: 15px
+              margin: 5px 0
+              border: 1px solid #999
+              color: #999
+            #clear-input
+              position: absolute
+              width: 26px
+              height: 26px
+              background: #aaa
+              border-radius: 50%
+              top: 13px
+              right: 6px
+              .content
+                font-size: 30px
+                font-weight: bolder
+                position: relative
+                top: -4px
+                left: 5px
+                color: white
+            #citySelect
+              margin-top: -6px
+              position: relative
+              z-index: 999
+              background: #fff
+              li
+                border-left: 1px solid #bbb
+                border-right: 1px solid #bbb
+                padding: 15px 5px
+                font-size: 18px
+                &:last-child
+                  border-bottom: 1px solid #bbb
+          button
+            width: 90px
+            height: 45px
+            display: block
+            margin: auto
+            line-height: 40px
+            background: #f98701
+            color: white
+            border: none
+            border-radius: 4px
+            margin-top: 3px
+            padding: 0
+
+.container
+  .day
+    background: #999
+    padding: 5px 0
+    margin: 5px 0
+    color: #fff
+    h2
+      color: #fff
+      font-size: 27px
+      margin-bottom: 9px
+  li
+    padding: 3px 0
+    min-height: 25px
+  .main-description
+    .icon
+      display: flex
+      flex-direction: row
+      justify-content: center
+      align-items: center
+      margin: 10px 0
+      border-top: 1px solid #ddd
+      border-bottom: 1px solid #ddd
+      img
+        margin-left: 15px
+      .descr
+        font-weight: bolder
+        text-transform: uppercase
+  li.temp
+    font-weight: bolder
+    ul
+      padding-top: 8px
+      padding-bottom: 0
+      .single-with-image
+        font-size: 22px
+      li
+        span
+          font-weight: bolder
+  .weather_app
+    #current
+    #hourly
+    #daily
+      text-align: center
+      .single-day
+        padding: 10px 0
+        margin: 10px 0
+        .content
+          display: grid
+          grid-template-columns: 1fr 1fr
+          .left,
+          .right
+            width: 100%
+            .single-with-image
+              margin-bottom: -12px
+          .left
+            text-align: right
+            padding-right: 15px
+          .right
+            text-align: left
+            padding-left: 15px
+            .single-with-image
+              min-height: 56px
+              line-height: 44px
+
+#current
+  padding: 20px
+  .weather-current
+    display: grid
+    grid-template-columns: 1fr 1fr
+    .left,
+    .right
+      width: 100%
+      padding: 10px
+      p
+        font-size: 12px
+        text-transform: capitalize
+        span
+          font-weight: bolder
+          text-transform: none
+    .left
+      img
+        width: 100px
+      p.descr
+        padding-left: 18px
+        margin-top: -25px
+    .right
+      text-align: right
+      p.temp
+        font-size: 30px
+        margin-bottom: 15px
+
+#hourly
+  padding: 20px
+  li.time
+    padding: 5px
+    background: #045780
+    color: #fff
+  .weather-hourly
+    display: grid
+    grid-template-columns: 1fr 1fr
+    .left,
+    .right
+      width: 100%
+      padding: 10px
+      .temp
+        font-size: 23px
+        min-height: 50px
+        img
+          width: 50px
+          margin: -10px 0
+    .left
+      li
+        font-size: 12px
+    .right
+      text-align: right
+
+// .trigger,
+#hourly,
+#daily
+  display: none
+
+.trigger
+  padding: 10px
+  h3
+    span
+      position: absolute
+      transform: rotate(90deg)
+
+.copyright
+  position: absolute
+  bottom: 40px
+  left: 50%
+  transform: translateX(-50%)
+  text-align: center
+  color: #aaa
+  p
+    font-size: 15px
+    a
+      width: 100%
+      color: #888

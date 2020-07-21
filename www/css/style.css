@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background: #999;
+}
+
+body .container {
+  width: 300px;
+  padding: 20px;
+  margin: auto;
+  background: #f9f9f9;
+  display: flex;
+}
+
+body .container .weather_api {
+  width: 90%;
+  height: 430px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+body .container .weather_api h4 {
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+body .container .weather_api form {
+  width: 100%;
+}
+
+body .container .weather_api form label {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+body .container .weather_api form select {
+  display: block;
+  width: 95%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  color: #666;
+  text-align: center;
+  margin: 15px auto;
+  padding-left: 15px;
+}
+
+body .container .weather_api button {
+  width: 120px;
+  height: 45px;
+  display: block;
+  margin: auto;
+  line-height: 45px;
+  background: #f98701;
+  color: white;
+  border: none;
+}
+
+body .container .weather_api .box ul {
+  margin-top: 15px;
+}
+
+body .container .weather_api .box ul li {
+  width: 100%;
+  clear: both;
+}
+
+body .container .weather_api .box ul li h4 {
+  text-align: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+body .container .weather_api .box ul li div {
+  position: relative;
+}
+
+body .container .weather_api .box ul li div img {
+  width: 80px;
+  height: 80px;
+}
+
+body .container .weather_api .box ul li div .temp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+body .container .weather_api .box ul li span {
+  float: right;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+body .container .weather_api .box ul li .descr {
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.copyright {
+  margin-top: 60px;
+  text-align: center;
+  color: #aaa;
+}
+
+.copyright p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.copyright p a {
+  width: 100%;
+  color: #888;
+}
+
+.copyright p a:visited {
+  color: #888;
+}
+
+.copyright p a:active {
+  color: #888;
+}
