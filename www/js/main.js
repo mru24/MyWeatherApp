@@ -2,8 +2,11 @@
 var cityInput = $('#cityInput');
 var citySelect = $('#citySelect');
 
+var lang = "pl";
+
 var oneCallApi = 'https://api.openweathermap.org/data/2.5/onecall?';
 
+$('#get-result').html(translate("Get weather"));
 $('#get-result').on('click', function() {
   loadApi(oneCallApi);
 });
@@ -34,7 +37,7 @@ function loadApi(api_data) {
       navigator.geolocation.getCurrentPosition( function(position) {
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
-        var url = api + "lat=" + lat + "&lon=" + lon + units + apiKey;
+        var url = api + "lat=" + lat + "&lon=" + lon + "&lang=pl" + units + apiKey;
         getData(url);
       });
     } else {
@@ -42,7 +45,7 @@ function loadApi(api_data) {
     }
   } else {
     var pos = $(cityInput).attr('data-pos');
-    var url = api + pos + units + apiKey;
+    var url = api + pos + "&lang=pl" + units + apiKey;
     getData(url);
   }
 
@@ -70,8 +73,13 @@ function loadApi(api_data) {
           '</div>' +
           '<div class="right">' +
             '<p class="temp">' + Math.round(current.temp) + ' &#8451;</p>' +
-            '<p class="feels_like">feels like <span>' + Math.round(current.feels_like) + ' &#8451;</span></p>' +
-            '<p class="wind-speed">wind <span>' + current.wind_speed + ' m/s</span></p>' +
+            '<p class="feels_like">' + translate("Feels like") + ' <span>' + Math.round(current.feels_like) + ' &#8451;</span></p>' +
+            '<p>' + translate("Wind speed") + ' <span>' + current.wind_speed + ' m/s</span></p>' +
+            '<p class="wind-direction-container">' + translate("Wind direction") + ' <span class="wind-icon" style="transform:rotate(' + current.wind_deg + 'deg)"><span class="icon">&#8593;</span></span></p>' +
+            '<p>' + translate("Humidity") + ' <span>' + current.humidity + ' %</span></p>' +
+            '<p>' + translate("Visibility") + ' <span>' + current.visibility / 1000 + ' km</span></p>' +
+            '<p>' + translate("Pressure") + ' <span>' + current.pressure + ' m/s</span></p>' +
+            '<p>' + translate("UV") + ' <span>' + current.uvi + ' ' + uvi(current.uvi) + '</span></p>' +
           '</div>' +
         '</div>';
         var sunrise = current.sunrise * 1000;
@@ -125,11 +133,12 @@ function loadApi(api_data) {
             '<li class="left">' +
               '<ul>' +
                 '<li class="temp"><img src="https://openweathermap.org/img/w/' + item.weather[0].icon + '.png" /></li>' +
-                '<li>Feels like: </li>' +
-                '<li>Pressure: </li>' +
-                '<li>Humidity: </li>' +
-                '<li>Wind speed: </li>' +
-                '<li>Visibility: </li>' +
+                '<li>' + translate("Feels like") + ': </li>' +
+                '<li>' + translate("Pressure") + ': </li>' +
+                '<li>' + translate("Humidity") + ': </li>' +
+                '<li>' + translate("Wind speed") + ': </li>' +
+                '<li>' + translate("Wind direction") + ': </li>' +
+                '<li>' + translate("Visibility") + ': </li>' +
               '</ul>' +
             '</li>' +
             '<li class="right">' +
@@ -139,6 +148,7 @@ function loadApi(api_data) {
                 '<li>' + item.pressure + ' hPa</li>' +
                 '<li>' + item.humidity + ' %</li>' +
                 '<li>' + item.wind_speed + ' m/s</li>' +
+                '<li class="wind-direction-container"><span class="wind-icon" style="transform:rotate(' + item.wind_deg + 'deg)"><span class="icon">&#8593;</span></span></li>' +
                 '<li>' + item.visibility / 1000 + ' km</li>' +
               '</ul>' +
             '</li>' +
@@ -172,29 +182,29 @@ function loadApi(api_data) {
           var today_day = today.getDay();
           console.log(today_day+'/'+weekday);
           if(weekday == today_day) {
-            wd_name = "Today";
+            wd_name = translate("Today");
           } else {
             switch (weekday) {
               case 1:
-                wd_name = "Monday";
+                wd_name = translate("Monday");
                 break;
               case 2:
-                wd_name = "Tuesday";
+                wd_name = translate("Tuesday");
                 break;
               case 3:
-                wd_name = "Wednesday";
+                wd_name = translate("Wednesday");
                 break;
               case 4:
-                wd_name = "Thursday";
+                wd_name = translate("Thursday");
                 break;
               case 5:
-                wd_name = "Friday";
+                wd_name = translate("Friday");
                 break;
               case 6:
-                wd_name = "Saturday";
+                wd_name = translate("Saturday");
                 break;
               default:
-                wd_name = "Sunday";
+                wd_name = translate("Sunday");
             };
           }
           daily_output +=
@@ -216,23 +226,24 @@ function loadApi(api_data) {
             '<div class="content">' +
               '<div class="left">' +
                 '<ul>' +
-                  '<li>Sunrise: ' + sunrise_hour + ':' + getRightNumber(sunrise_min) + '</li>' +
+                  '<li>' + translate("Sunrise") + ': ' + sunrise_hour + ':' + getRightNumber(sunrise_min) + '</li>' +
                   '<li class="temp">' +
                     '<ul>' +
                       '<div class="single-with-image"><img src="https://openweathermap.org/img/w/01d.png"></div>' +
                       '<div class="single-with-image"><img src="https://openweathermap.org/img/w/01n.png"></div>' +
                     '</ul>' +
                   '</li>' +
-                  '<li>Humidity: </li>' +
-                  '<li>UV: </li>' +
-                  '<li>Pressure: </li>' +
-                  '<li>Wind speed: </li>' +
+                  '<li>' + translate("Humidity") + ': </li>' +
+                  '<li>' + translate("UV") + ': </li>' +
+                  '<li>' + translate("Pressure") + ': </li>' +
+                  '<li>' + translate("Wind speed") + ': </li>' +
+                  '<li>' + translate("Wind direction") + ': </li>' +
                   '<li><div class="single-with-image"><img src="https://openweathermap.org/img/w/10d.png"></div></li>' +
                 '</ul>' +
               '</div>' +
               '<div class="right">' +
                 '<ul>' +
-                  '<li>Sunset: ' + sunset_hour + ':' + getRightNumber(sunset_min) + '</li>' +
+                  '<li>' + translate("Sunset") + ': ' + sunset_hour + ':' + getRightNumber(sunset_min) + '</li>' +
                   '<li class="temp">' +
                     '<ul>' +
                       '<div class="single-with-image">' + Math.round(item.temp.day) + ' &#8451;</div>' +
@@ -240,15 +251,16 @@ function loadApi(api_data) {
                     '</ul>' +
                   '</li>' +
                   '<li>' + item.humidity + ' %</li>' +
-                  '<li>' + item.uvi + ' UV</li>' +
+                  '<li>' + item.uvi + ' ' + uvi(item.uvi) + '</li>' +
                   '<li>' + item.pressure + ' hPa</li>' +
-                  '<li>' + item.wind_speed + ' m/s</li>';
+                  '<li>' + item.wind_speed + ' m/s</li>' +
+                  '<li class="wind-direction-container"><span class="wind-icon" style="transform:rotate(' + item.wind_deg + 'deg)"><span class="icon">&#8593;</span></span></li>';
                   if(item.rain) {
                     daily_output +=
                     '<li><div class="single-with-image">' + item.rain + ' mm</div></li>';
                   } else {
                     daily_output +=
-                    '<li><div class="single-with-image">no data</div></li>';
+                    '<li><div class="single-with-image">' + translate("No rain") + '</div></li>';
                   }
                 daily_output +=
                 '</ul>' +
@@ -263,6 +275,7 @@ function loadApi(api_data) {
         $('#hourly').html(hourly_output);
         $('#current').html(current_output);
         $('#daily').html(daily_output);
+        translate();
       }
     }
     xhr.send();
@@ -300,7 +313,7 @@ function getCities(url) {
       var output = '';
       var cities = JSON.parse(this.responseText);
       console.log(cities);
-      output += '<li data="My Location">My Location</li>';
+      output += '<li data="My Location">' + translate("My Location") + '</li>';
       for(i = 0; i < cities.data.length; i++) {
         output += '<li data=' + "lat="+cities.data[i].latitude + "&lon=" + cities.data[i].longitude +'>' + cities.data[i].name + ", " + cities.data[i].regionCode + ", " + cities.data[i].countryCode + '</li>';
       }
@@ -327,33 +340,33 @@ function currentDate() {
   day = d.getDay();
   switch (day) {
     case 1:
-      d_name = "Monday";
+      d_name = translate("Monday");
       break;
     case 2:
-      d_name = "Tuesday";
+      d_name = translate("Tuesday");
       break;
     case 3:
-      d_name = "Wednesday";
+      d_name = translate("Wednesday");
       break;
     case 4:
-      d_name = "Thursday";
+      d_name = translate("Thursday");
       break;
     case 5:
-      d_name = "Friday";
+      d_name = translate("Friday");
       break;
     case 6:
-      d_name = "Saturday";
+      d_name = translate("Saturday");
       break;
     default:
-      d_name = "Sunday";
+      d_name = translate("Sunday");
   };
   var date = '';
   date +=
   '<span class="day-date">' +
   d_name +
   " " + d.getDate() +
-  " / " + d.getMonth() +
-  " / " + d.getFullYear() + "</span>";
+  "/" + d.getMonth() +
+  "/" + d.getFullYear() + "</span>";
   return date;
 }
 function getRightNumber(i) {
@@ -369,3 +382,90 @@ $('#hourly-trigger').on('click', function() {
 $('#daily-trigger').on('click', function() {
   $('#daily').slideToggle();
 });
+
+function translate(input) {
+  if(lang == "pl") {
+    switch (input) {
+      case "Feels like":
+        return "Temp. odczuwalna";
+        break;
+      case "Pressure":
+        return "Ciśnienie";
+        break;
+      case "Humidity":
+        return "Wilgotność";
+        break;
+      case "Wind speed":
+        return "Wiatr";
+        break;
+      case "Visibility":
+        return "Widoczność";
+        break;
+      case "UV":
+        return "Wskaźnik UV";
+        break;
+      case "Monday":
+        return "Poniedziałek";
+        break;
+      case "Tuesday":
+        return "Wtorek";
+        break;
+      case "Wednesday":
+        return "Środa";
+        break;
+      case "Thursday":
+        return "Czwartek";
+        break;
+      case "Friday":
+        return "Piątek";
+        break;
+      case "Saturday":
+        return "Sobota";
+        break;
+      case "Sunday":
+        return "Niedziela";
+        break;
+      case "Today":
+        return "Dzisiaj";
+        break;
+      case "Get weather":
+        return "Sprawdź pogodę";
+        break;
+      case "Sunrise":
+        return "Wschód słońca";
+        break;
+      case "Sunset":
+        return "Zachód słońca";
+        break;
+      case "No rain":
+        return "Brak opadów";
+        break;
+      default:
+        return input;
+    }
+  } else {
+    return input;
+  }
+}
+
+function uvi(input) {
+  switch (true) {
+    case input >= 0 && input <= 2:
+      return translate("Low");
+      break;
+    case input > 2 && input <= 6:
+      return translate("Medium");
+      break;
+    case input > 6 && input <= 7:
+      return translate("High");
+      break;
+    case input > 7 && input <= 10:
+      return translate("Very High");
+      break;
+    case input > 10:
+      return translate("Extremaly High");
+      break;
+    default:
+      return "who knows";
+  }
+}

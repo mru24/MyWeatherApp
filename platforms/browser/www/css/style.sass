@@ -95,7 +95,6 @@ body
             text-align: right
             padding: 0 10px
             button
-              width: 90px
               height: 45px
               display: block
               margin: auto
@@ -107,6 +106,8 @@ body
               margin-top: 3px
               padding: 0
               display: inline-block
+              &#get-result
+                padding: 0 20px
               &#search
                 width: 45px
                 background: transparent
@@ -187,9 +188,34 @@ body
             .single-with-image
               min-height: 56px
               line-height: 44px
+            li.wind-direction-container
+              position: relative
+              display: inline-block
+              line-height: 30px
+              .wind-icon
+                position: absolute
+                top: 0
+                left: 0
+                display: inline-block
+                width: 22px
+                height: 22px
+                border-color: #001fff
+                .icon
+                  font-size: 15px
+                  font-weight: bolder
+                  width: 100%
+                  height: 100%
+                  position: relative
+                  left: 5px
+                  top: -8px              
 
 #current
   padding: 35px 20px
+  .current-header
+    h4
+    span.day-date
+      display: block
+      padding-top: 10px
   .weather-current
     display: grid
     grid-template-columns: 1fr 1fr
@@ -260,6 +286,51 @@ body
       position: absolute
       transform: rotate(90deg)
       right: 10px
+
+.wind-direction-container
+  position: relative
+  width: 100%
+  padding-right: 30px
+  display: inline-block
+  line-height: 30px
+  .wind-icon
+    position: absolute
+    top: 4px
+    right: 0
+    display: inline-block
+    width: 22px
+    height: 22px
+    border: 2px solid #ddd
+    border-radius: 50%
+    .icon
+      font-size: 15px
+      font-weight: bolder
+      width: 100%
+      height: 100%
+      position: relative
+      left: -5px
+      top: -8px
+li.wind-direction-container
+  position: relative
+  display: inline-block
+  line-height: 30px
+  .wind-icon
+    position: absolute
+    top: -14px
+    right: 0
+    display: inline-block
+    width: 22px
+    height: 22px
+    border-color: #001fff
+    .icon
+      font-size: 15px
+      font-weight: bolder
+      width: 100%
+      height: 100%
+      position: relative
+      left: -5px
+      top: -6px
+
 
 .copyright
   position: absolute
