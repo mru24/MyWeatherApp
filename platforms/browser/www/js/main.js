@@ -18,7 +18,8 @@ $('#search').on('click', function() {
 })
 
 $(document).ready(function() {
-  currentTime();
+  loadApi(oneCallApi);
+
 });
 
 
@@ -58,8 +59,11 @@ function loadApi(api_data) {
         var current = weather.current;
         var current_output = "";
         current_output +=
-        '<div class="weather-current">' +
+        '<div class="current-header">' +
           '<h4>' + city + '</h4>' +
+          currentDate() +
+        '</div>' +
+        '<div class="weather-current">' +
           '<div class="left">' +
             '<img src="https://openweathermap.org/img/w/' + current.weather[0].icon + '.png" />' +
             '<p class="descr">' + current.weather[0].description + '</p>' +
@@ -77,7 +81,9 @@ function loadApi(api_data) {
         var sunset_time = new Date(sunset);
         var sunset_hour = sunset_time.getHours();
         var hourly_weather = weather.hourly;
+
         var hourly_output = "";
+
         hourly_output += "<ul>";
         hourly_weather.forEach((item) => {
           var hour = item.dt * 1000;
@@ -97,11 +103,11 @@ function loadApi(api_data) {
           } else if(dt_hour > sunrise_hour && dt_hour < sunset_hour -1) {
             console.log("3",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
-            '<div class="weather-hourly" style="background:#fefefe;color:black;">';
+            '<div class="weather-hourly" style="background:#ffe151;color:black;">';
           } else if(dt_hour >= sunset_hour - 1 && dt_hour < sunset_hour) {
             console.log("4",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
-            '<div class="weather-hourly" style="background:#e4ae21;color:black;">';
+            '<div class="weather-hourly" style="background:#ff8a12;color:black;">';
           } else if(dt_hour >= sunset_hour && dt_hour < sunset_hour + 1) {
             console.log("5",dt_hour,"/",sunrise_hour,"/",sunset_hour);
             hourly_output +=
@@ -140,8 +146,6 @@ function loadApi(api_data) {
         });
         hourly_output += "</ul>";
 
-
-
         var daily = weather.daily;
 
         var daily_output = "";
@@ -164,28 +168,35 @@ function loadApi(api_data) {
           var year = date.getFullYear();
           var weekday = date.getDay();
           var wd_name;
-          switch (weekday) {
-            case 1:
-              wd_name = "Monday";
-              break;
-            case 2:
-              wd_name = "Tuesday";
-              break;
-            case 3:
-              wd_name = "Wednesday";
-              break;
-            case 4:
-              wd_name = "Thursday";
-              break;
-            case 5:
-              wd_name = "Friday";
-              break;
-            case 6:
-              wd_name = "Saturday";
-              break;
-            default:
-              wd_name = "Sunday";
-          };
+          var today = new Date();
+          var today_day = today.getDay();
+          console.log(today_day+'/'+weekday);
+          if(weekday == today_day) {
+            wd_name = "Today";
+          } else {
+            switch (weekday) {
+              case 1:
+                wd_name = "Monday";
+                break;
+              case 2:
+                wd_name = "Tuesday";
+                break;
+              case 3:
+                wd_name = "Wednesday";
+                break;
+              case 4:
+                wd_name = "Thursday";
+                break;
+              case 5:
+                wd_name = "Friday";
+                break;
+              case 6:
+                wd_name = "Saturday";
+                break;
+              default:
+                wd_name = "Sunday";
+            };
+          }
           daily_output +=
           '<div class="single-day">' +
             '<div class="day">' +
@@ -311,16 +322,39 @@ $(citySelect).click(function() {
   })
 });
 
-function currentTime() {
+function currentDate() {
   var d = new Date();
-  var time = document.querySelector('#time');
-  time.innerHTML = d.getHours() +
-  " : " + getRightNumber(d.getMinutes()) +
-  " : " + getRightNumber(d.getSeconds()) + "<br /><span class='date'>" +
-  d.getDate() +
+  day = d.getDay();
+  switch (day) {
+    case 1:
+      d_name = "Monday";
+      break;
+    case 2:
+      d_name = "Tuesday";
+      break;
+    case 3:
+      d_name = "Wednesday";
+      break;
+    case 4:
+      d_name = "Thursday";
+      break;
+    case 5:
+      d_name = "Friday";
+      break;
+    case 6:
+      d_name = "Saturday";
+      break;
+    default:
+      d_name = "Sunday";
+  };
+  var date = '';
+  date +=
+  '<span class="day-date">' +
+  d_name +
+  " " + d.getDate() +
   " / " + d.getMonth() +
   " / " + d.getFullYear() + "</span>";
-  var timer = setTimeout(currentTime,1000);
+  return date;
 }
 function getRightNumber(i) {
   if(i < 10) {

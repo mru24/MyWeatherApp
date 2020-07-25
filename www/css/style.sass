@@ -40,9 +40,8 @@ body
             letter-spacing: 3px
           #time
             text-align: right
-            font-size: 20px
             .date
-              font-size: 15px
+              font-size: 12px
         .form-container
           form
             display: none
@@ -78,15 +77,8 @@ body
               top: 17px
               right: 10px
             #home
-              top: 16px
-              left: 8px
-              .content
-                font-size: 24px
-                font-weight: bolder
-                position: relative
-                top: -3px
-                left: 7px
-                color: white
+              top: 17px
+              left: 10px
             #citySelect
               margin-top: -6px
               position: relative
@@ -129,49 +121,51 @@ body
                   top: -2px
 
 .container
-  .day
-    background: #999
-    padding: 5px 0
-    margin: 5px 0
-    color: #fff
-    h2
+  .single-day
+    .day
+      background: #999
+      padding: 5px 0
+      margin: 5px 0
       color: #fff
-      font-size: 27px
-      margin-bottom: 9px
-  li
-    padding: 3px 0
-    min-height: 25px
-  .main-description
-    .icon
-      display: flex
-      flex-direction: row
-      justify-content: center
-      align-items: center
-      margin: 10px 0
-      border-top: 1px solid #ddd
-      border-bottom: 1px solid #ddd
-      img
-        margin-left: 15px
-      .descr
-        font-weight: bolder
-        text-transform: uppercase
-  li.temp
-    font-weight: bolder
-    ul
-      padding-top: 8px
-      padding-bottom: 0
-      .single-with-image
-        font-size: 22px
-      li
-        span
+      h2
+        color: #fff
+        font-size: 27px
+        margin-bottom: 9px
+    li
+      padding: 3px 0
+      min-height: 25px
+    .main-description
+      .icon
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        margin: 10px 0
+        border-top: 1px solid #ddd
+        border-bottom: 1px solid #ddd
+        img
+          width: 75px
+          margin-left: 15px
+        .descr
           font-weight: bolder
+          text-transform: uppercase
+    li.temp
+      font-weight: bolder
+      ul
+        padding-top: 8px
+        padding-bottom: 0
+        .single-with-image
+          font-size: 22px
+        li
+          span
+            font-weight: bolder
   .weather_app
     #current
     #hourly
     #daily
       text-align: center
       .weather-daily
-        background: #fffeed
+        background: #fafafa
         color: #444
       .single-day
         padding: 10px 0
@@ -224,7 +218,9 @@ body
 #hourly
   li.time
     padding: 5px
-    background: #045780
+    background: #8d8d8d
+    border-top: 2px solid white
+    border-bottom: 2px solid white
     color: #fff
   .weather-hourly
     display: grid
@@ -235,15 +231,18 @@ body
       padding: 10px
       .temp
         font-size: 23px
-        min-height: 50px
+        min-height: 67px
         img
-          width: 50px
+          width: 75px
           margin: -10px 0
     .left
       li
         font-size: 12px
+        line-height: 25px
     .right
       text-align: right
+      li
+        line-height: 25px
 
 .trigger,
 #hourly,
@@ -252,7 +251,8 @@ body
 
 .trigger
   padding: 10px
-  background: #14113d
+  background: #939393
+  border-bottom: 2px solid white
   color: white
   h3
     margin-bottom: 8px
